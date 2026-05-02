@@ -290,7 +290,7 @@ export const AuthProvider = ({ children }) => {
         request("/admin/incidents", {}, activeToken),
         request("/admin/fraud-reports", {}, activeToken),
         request("/admin/analyst-reports", {}, activeToken),
-        request("/admin/election-results", {}, activeToken),
+        request("/election-results", {}, activeToken),
       ]);
 
       setUsers(usersRes.success && Array.isArray(usersRes.data) ? usersRes.data : []);
@@ -520,7 +520,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const createElectionResult = async (payload) => {
-    const result = await request("/admin/election-results", {
+    const result = await request("/election-results", {
       method: "POST",
       body: JSON.stringify(payload),
     });
@@ -531,7 +531,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const updateElectionResult = async (resultId, updates) => {
-    const result = await request(`/admin/election-results/${resultId}`, {
+    const result = await request(`/election-results/${resultId}`, {
       method: "PUT",
       body: JSON.stringify(updates),
     });
@@ -542,7 +542,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const deleteElectionResult = async (resultId) => {
-    const result = await request(`/admin/election-results/${resultId}`, { method: "DELETE" });
+    const result = await request(`/election-results/${resultId}`, { method: "DELETE" });
     if (result.success) {
       setElectionResults((prev) => prev.filter((item) => item.id !== resultId));
     }
